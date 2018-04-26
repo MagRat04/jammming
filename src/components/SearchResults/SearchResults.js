@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import TrackList from '../TrackList/TrackList';
 
 class SearchResults extends Component {
