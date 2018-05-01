@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 
 class Track extends Component {
     renderAction() {
-        if (isRemoval) {
-            return "-";
-        } else {
-            return "+";
-        }
+        // if (isRemoval) {
+        //     return "-";
+        // } else {
+        //     return "+";
+        // }
     }
 
     render() {
