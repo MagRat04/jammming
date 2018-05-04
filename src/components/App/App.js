@@ -21,6 +21,8 @@ class App extends Component {
 
         this.addTrack = this.addTrack.bind(this);
         this.removeTrack = this.removeTrack.bind(this);
+        this.updatePlaylistName = this.updatePlaylistName.bind(this);
+        this.savePlaylist = this.savePlaylist.bind(this);
     };
 
   addTrack(track) {
@@ -35,6 +37,16 @@ class App extends Component {
   removeTrack(track) {
     this.state.playlistTracks.splice(track.id);
     this.setState(this.state.playlistTracks);
+  }
+
+  updatePlaylistName(name) {
+    this.setState({name: name});
+  }
+
+  savePlaylist() {
+    this.playlistTracks.forEach(trackURIs => {
+      //get the track URI from spotify
+    });
   }
 
   render() {
@@ -52,6 +64,8 @@ class App extends Component {
                 playlistName={this.state.playlistName}
                 playlistTracks={this.state.playlistTracks}
                 onRemove={this.state.removeTrack}
+                onNameChange={this.updatePlaylistName}
+                onSave={this.savePlaylist}
               />
           </div>
         </div>
