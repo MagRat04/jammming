@@ -60,7 +60,7 @@ class App extends Component {
           />
           <div className="App-playlist">
               <SearchResults 
-                searchRes={this.state.SearchResults}
+              searchResults={this.state.searchResults}
                 onAdd={this.addTrack}
               />
               <Playlist 

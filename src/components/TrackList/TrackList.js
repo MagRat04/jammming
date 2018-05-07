@@ -6,7 +6,7 @@ class TrackList extends Component {
         return (
             <div className="TrackList">
                 {
-                    this.props.track.map(track => {
+                    this.props.tracks.map(track => {
                         return 
                         <Track
                             key={this.props.id}
@@ -24,4 +24,4 @@ class TrackList extends Component {
     }
 }
 
-export default Track;
+export default TrackList;

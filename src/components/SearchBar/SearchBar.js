@@ -18,7 +18,6 @@ class SearchBar extends Component {
 
     handleTermChange(event) {
         this.setState({ term: event.target.value });
-        console.log('handle term change')
     }
 
     render() {
