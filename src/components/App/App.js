@@ -10,12 +10,7 @@ class App extends Component {
     super(props);
 
     this.state = {
-      searchResults: {
-        name: 'Enter Sandman',
-        artist: 'Metallica',
-        album: 'Metallica Self Titled',
-        id: '1'
-      },
+      searchResults: [],
       playlistName: 'Good Ole Metal',
       playlistTracks: []
       }

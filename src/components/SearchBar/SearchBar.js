@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { SIGTERM } from 'constants';
+import './SearchBar.css';
 
 class SearchBar extends Component {
     constructor(props) {
