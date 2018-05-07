@@ -23,7 +23,7 @@ const Spotify = {
         }
     },
     search(term) {
-        this.getAccessToken();
+        //this.getAccessToken();
         console.log('after search token' + userAccessToken);
         console.log('search term: ' + term)
         return fetch(`https://api.spotify.com/v1/search?type=track&limit=20&q=${term}`, {
@@ -46,7 +46,7 @@ const Spotify = {
                 }));
                 console.log(jsonResponse.tracks);
             } else {
-                return [];
+                //return [];
             }
         })
     }

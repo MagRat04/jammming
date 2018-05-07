@@ -46,11 +46,13 @@ class App extends Component {
 
   search(term) {
     Spotify.search(term).then(tracks => {
+      const accessToken = Spotify.getAccessToken();
       this.setState({ searchResults: tracks });
     });
   }
 
   render() {
+    //Spotify.getAccessToken();
     return (
       <div>
         <h1>Ja<span className="highlight">mmm</span>ing</h1>
