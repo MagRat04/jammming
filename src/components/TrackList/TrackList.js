@@ -7,8 +7,7 @@ class TrackList extends Component {
             <div className="TrackList">
                 {
                     this.props.tracks.map(track => {
-                        return 
-                        <Track
+                        return <Track
                             key={this.props.id}
                             track={this.props.name}
                             artist={this.props.artist}
@@ -18,7 +17,6 @@ class TrackList extends Component {
                             isRemoval={this.props.isRemoval}
                         />
                     })}
-                }}
             </div>
         );
     }

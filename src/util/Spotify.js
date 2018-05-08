@@ -10,13 +10,13 @@ let expiresIn = url.match(/expires_in=([^&]*)/);
 const Spotify = {
     getAccessToken() {
         if(!this.userAccessToken === '') {
-            return userAccessToken;
             console.log('already had a token: ' + userAccessToken);
+            return userAccessToken
         } else if (!userAccessToken && expiresIn === '') {
             window.setTimeout(() => userAccessToken = null, expiresIn = 3600);
             window.history.pushState('Access Token', null, '/')
-            return userAccessToken;
             console.log('just aquired a token' + userAccessToken);
+            return userAccessToken
         } else {
             window.location = `https://accounts.spotify.com/authorize?client_id=${clientID}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectURI}`;
             console.log('going to get a token: ' + userAccessToken);
@@ -30,8 +30,8 @@ const Spotify = {
             headers: { Authorization: `Bearer ${userAccessToken}` }
         }).then(response => {
             if(response.ok) {
-                return response.json;
                 console.log(response.json);
+                return response.json;
             }
             throw new Error('Request Failed!');
         }, networkError => console.log(networkError.message)
@@ -43,8 +43,7 @@ const Spotify = {
                     artist: track.artists[0].name,
                     album: track.album.name,
                     uri: track.uri
-                }));
-                console.log(jsonResponse.tracks);
+                }))
             } else {
                 //return [];
             }
