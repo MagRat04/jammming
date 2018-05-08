@@ -8,10 +8,10 @@ class TrackList extends Component {
                 {
                     this.props.tracks.map(track => {
                         return <Track
-                            key={this.props.id}
-                            track={this.props.name}
-                            artist={this.props.artist}
-                            album={this.props.album}
+                            key={track.id}
+                            track={track.name}
+                            artist={track.artist}
+                            album={track.album}
                             onAdd={this.props.onAdd}
                             onRemove={this.props.onRemove}
                             isRemoval={this.props.isRemoval}
