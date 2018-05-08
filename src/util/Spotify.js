@@ -9,12 +9,12 @@ let expiresIn = url.match(/expires_in=([^&]*)/);
 
 const Spotify = {
     getAccessToken() {
-        if(!this.userAccessToken === '') {
+        if(this.userAccessToken) {
             console.log('already had a token: ' + userAccessToken);
             return userAccessToken
-        } else if (!userAccessToken && expiresIn === '') {
-            window.setTimeout(() => userAccessToken = null, expiresIn = 3600);
-            window.history.pushState('Access Token', null, '/')
+        } else if (userAccessToken && expiresIn) {
+            window.setTimeout(() => userAccessToken = '', expiresIn * 1000);
+            window.history.pushState('Access Token', null, '/');
             console.log('just aquired a token' + userAccessToken);
             return userAccessToken
         } else {
