@@ -1,16 +1,20 @@
 const clientID = '28adf6a9ddc44165bef6d067ef9ec4dc';
 const redirectURI = 'http://localhost:3000/';
 
-const url = window.location.href;
-let userAccessToken = url.match(/access_token=([^&]*)/);
-let expiresIn = url.match(/expires_in=([^&]*)/);
+
 
 const Spotify = {
     getAccessToken() {
-        if(userAccessToken) {
-            console.log('already had a token: ' + userAccessToken);
+        let url = window.location.href;
+        let userAccessToken = window.location.href.match(/access_token=([^&]*)/);
+        let expiresIn = window.location.href.match(/expires_in=([^&]*)/); 
+
+        if (userAccessToken) {
+            console.log('Inside first if');
             return userAccessToken;
         } else if (userAccessToken && expiresIn) {
+            userAccessToken = userAccessToken[1];
+            expiresIn = expiresIn[1];
             window.setTimeout(() => userAccessToken = '', expiresIn * 1000);
             window.history.pushState('Access Token', null, '/');
             console.log('just aquired a token' + userAccessToken);
@@ -22,14 +26,14 @@ const Spotify = {
     },
     search(term) {
         this.getAccessToken();
-        console.log('after search token' + userAccessToken);
+        console.log('after search token' + this.userAccessToken);
         console.log('search term: ' + term)
         return fetch(`https://api.spotify.com/v1/search?type=track&limit=20&q=${term}`, {
-            headers: { Authorization: `Bearer ${userAccessToken}` }
+            headers: { Authorization: `Bearer ${this.userAccessToken}` }
         }).then(response => {
             if(response.ok) {
                 console.log(response.json);
-                return response.json;
+                return response.json();
             }
             throw new Error('Request Failed!');
         }, networkError => console.log(networkError.message)
@@ -43,9 +47,12 @@ const Spotify = {
                     uri: track.uri
                 }))
             } else {
-                //return [];
+                return [];
             }
         })
+    },
+    savePlaylist(playlistName, trackURIs) {
+
     }
 
 }
