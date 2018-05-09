@@ -27,7 +27,7 @@ class App extends Component {
       return;
     } else {
       this.state.playlistTracks.push(track);
-      this.setState({playlistTracks: track});
+      this.setState({ playlistTracks: track });
     }
   }
 

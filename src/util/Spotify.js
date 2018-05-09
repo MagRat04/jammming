@@ -23,13 +23,10 @@ const Spotify = {
     },
     search(term) {
         this.getAccessToken();
-        console.log('after search token: ' + accessToken);
-        console.log('search term: ' + term)
         return fetch(`https://api.spotify.com/v1/search?type=track&limit=20&q=${term}`, {
             headers: { Authorization: `Bearer ${accessToken}` }
         }).then(response => {
             if(response.ok) {
-                console.log(response.json);
                 return response.json();
             }
             throw new Error('Request Failed!');

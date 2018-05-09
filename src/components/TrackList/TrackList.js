@@ -9,7 +9,7 @@ class TrackList extends Component {
                     this.props.tracks.map(track => {
                         return <Track
                             key={track.id}
-                            track={track.name}
+                            track={track}
                             artist={track.artist}
                             album={track.album}
                             onAdd={this.props.onAdd}
