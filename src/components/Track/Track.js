@@ -30,7 +30,6 @@ class Track extends Component {
             <div className="Track">
                 <div className="Track-information">
                     <h3>{this.props.track.title}</h3>
-                    {console.log(this.props)}
                     <p>{this.props.artist} | {this.props.album}</p>
                 </div>
                 {this.renderAction()}
