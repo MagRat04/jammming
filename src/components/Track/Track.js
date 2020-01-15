@@ -29,7 +29,7 @@ class Track extends Component {
         return (
             <div className="Track">
                 <div className="Track-information">
-                    <h3>{this.props.name}</h3>
+                    <h3>{this.props.track.title}</h3>
                     <p>{this.props.artist} | {this.props.album}</p>
                 </div>
                 {this.renderAction()}

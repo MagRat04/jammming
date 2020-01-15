@@ -23,13 +23,10 @@ const Spotify = {
     },
     search(term) {
         this.getAccessToken();
-        console.log('after search token: ' + accessToken);
-        console.log('search term: ' + term)
         return fetch(`https://api.spotify.com/v1/search?type=track&limit=20&q=${term}`, {
             headers: { Authorization: `Bearer ${accessToken}` }
         }).then(response => {
             if(response.ok) {
-                console.log(response.json);
                 return response.json();
             }
             throw new Error('Request Failed!');
@@ -49,9 +46,53 @@ const Spotify = {
         })
     },
     savePlaylist(playlistName, trackURIs) {
+        this.getAccessToken();
+        let userID;
+        let playlistID;
 
+        if (playlistName && trackURIs) {
+            return fetch(`https://api.spotify.com/v1/me`, {
+                headers: { Authorization: `Bearer ${accessToken}` }
+            }).then(response => {
+                if (response.ok) {
+                    return response.json();
+                }
+                throw new Error('Request Failed!');
+            }, networkError => console.log(networkError.message)
+            ).then(jsonResponse => {
+            userID = jsonResponse.id;
+            return; // might need to set the variable on the return line?
+            }).then(() => {
+                return fetch(`https://api.spotify.com/v1/users/${userID}/playlists`, {
+                    headers: {Authorization: `Bearer ${accessToken}` },
+                    method: 'POST',
+                    body: JSON.stringify({name: playlistName})
+            }).then(response => {
+                if (response.ok) {
+                    return response.json();
+                }
+                throw new Error('Request Failed!');
+            }, networkError => console.log(networkError.message)
+            ).then(jsonResponse => {
+                return playlistID = jsonResponse.id
+            })
+            }).then(() => {
+                    return fetch(`https://api.spotify.com/v1/users/${userID}/playlists/${playlistID}/tracks`, {
+                        headers: { Authorization: `Bearer ${accessToken}` },
+                        method: 'POST',
+                        body: JSON.stringify({ uris: trackURIs })
+                    }).then(response => {
+                        if (response.ok) {
+                            return response.json();
+                        }
+                        throw new Error('Request Failed!');
+                    }, networkError => console.log(networkError.message)
+                    ).then(jsonResponse => {
+                    });
+                });
+        } else {
+            return;
+        }
     }
-
 }
-
 export default Spotify; 
